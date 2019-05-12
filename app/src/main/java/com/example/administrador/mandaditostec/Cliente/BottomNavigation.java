@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.administrador.mandaditostec.R;
+import com.mrgames13.jimdo.splashscreen.App.SplashScreenBuilder;
 
 public class BottomNavigation extends AppCompatActivity implements
         FragmentPedidos.OnFragmentInteractionListener,
@@ -26,6 +27,11 @@ public class BottomNavigation extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
+
+        SplashScreenBuilder.getInstance(this)
+                //.setVideo(R.raw.splash_animation)
+                .setImage(R.drawable.ic_arrow_back_white)
+                .show();
 
         //Creando las instancias de los fragmentos
         fragmentPedidos = new FragmentPedidos();
