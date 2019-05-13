@@ -8,9 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.administrador.mandaditostec.R;
-import com.mrgames13.jimdo.splashscreen.App.SplashScreenBuilder;
 
 public class BottomNavigation extends AppCompatActivity implements
         FragmentPedidos.OnFragmentInteractionListener,
@@ -28,20 +28,6 @@ public class BottomNavigation extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
 
-        SplashScreenBuilder.getInstance(this)
-                //.setVideo(R.raw.splash_animation)
-                .setImage(R.drawable.ic_arrow_back_white)
-                .show();
-
-        //Creando las instancias de los fragmentos
-        fragmentPedidos = new FragmentPedidos();
-        fragmentMandaderos = new FragmentMandaderos();
-        fragmentPerfil = new FragmentPerfil();
-
-        setFragment(fragmentPedidos);//Establece fragment depor defecto de inicio
-        //Instanciando la vista del menú de navegación
-        navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(navigationListener);//Listener
     }
 
     //Listener para el menu de navegación
@@ -53,6 +39,7 @@ public class BottomNavigation extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.navigation_pedidos:
                     setFragment(fragmentPedidos);
+                    Toast.makeText(BottomNavigation.this, "Texto", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_mandaderos:
                     setFragment(fragmentMandaderos);

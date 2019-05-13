@@ -21,4 +21,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Mapa</string>
+
+    <!--String para el formulario de pedidos-->
+    <string name="tituloPedido">Nuevo pedido</string>
+    <string name="seleccionarMandaddero">Seleccionar mandadero</string>
+    <string name="nombreMandadero">Nombre del mandadero</string>
+    <string name="descripcionPedido">Descripción del pedido</string>
+    <string name="detallesPedidpLabel">Detalles del pedido</string>
+    <string name="selectDireccion">Seleccionar dirección</string>
+    <string name="direccionDestino">Direccion del destino</string>
 </resources>
