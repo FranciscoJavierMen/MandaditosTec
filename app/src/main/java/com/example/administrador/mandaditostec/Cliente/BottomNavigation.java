@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.administrador.mandaditostec.Cliente.Pedido.FragmentPedidos;
 import com.example.administrador.mandaditostec.R;
 
 public class BottomNavigation extends AppCompatActivity implements
