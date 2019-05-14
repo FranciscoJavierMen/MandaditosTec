@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "823062426342",
+    "firebase_url": "https://mandaditostec.firebaseio.com",
+    "project_id": "mandaditostec",
+    "storage_bucket": "mandaditostec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823062426342:android:93a2075403b38c82",
+        "android_client_info": {
+          "package_name": "com.example.administrador.mandaditostec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823062426342-rpg4vlus21p7f1pe7jq49icsv83r0405.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.administrador.mandaditostec",
+            "certificate_hash": "f5c2dbb0221bf66a250d95944afbfce244565177"
+          }
+        },
+        {
+          "client_id": "823062426342-06jb67m5qfn6a2e5bvqgk5t2biev3l9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs1XxKlziB-jlWepxWCb4lBPhNoTlXQ1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823062426342-06jb67m5qfn6a2e5bvqgk5t2biev3l9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

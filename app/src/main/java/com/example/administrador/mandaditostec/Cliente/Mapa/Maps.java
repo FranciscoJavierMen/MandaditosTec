@@ -164,12 +164,12 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback, View.O
     }
 
     //Mueve la cámara al punto ubicado
-    private void moverCamara(LatLng latLng, float zoom, String titlle ){
+    private void moverCamara(LatLng latLng, float zoom, String title ){
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-        if (!titlle.equals("Mi ubicación")){
+        if (!title.equals("Mi ubicación")){
             MarkerOptions markerOptions = new MarkerOptions()
                     .position(latLng)
-                    .title(titlle);
+                    .title(title);
             mMap.addMarker(markerOptions);
         }
     }
@@ -201,8 +201,8 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback, View.O
             case LOCATION_PERMISSION_REQUEST_CODE: {
                 if (grantResults.length > 0){
 
-                    for (int i = 0; i < grantResults.length; i++){
-                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                    for (int grantResult : grantResults) {
+                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
                             mLocationPermissionGranted = false;
                             return;
                         }

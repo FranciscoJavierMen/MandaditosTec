@@ -40,6 +40,8 @@
             android:layout_toEndOf="@+id/searchIcon"
             android:layout_centerVertical="true"
             android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:textStyle="italic"
             android:textColor="@android:color/black"
             android:background="@null"
@@ -57,7 +59,7 @@
         android:src="@drawable/ic_done"
         app:backgroundTint="@color/azul"
         app:layout_anchor="@+id/relLayout2"
-        app:layout_anchorGravity="right|center"
+        app:layout_anchorGravity="top|end"
         app:rippleColor="@android:color/white" />
 
     <RelativeLayout
@@ -66,16 +68,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_vertical"
-        android:layout_marginBottom="10sp"
-        android:layout_marginEnd="40sp"
-        android:layout_marginStart="10sp"
         android:background="@drawable/borde_blanco"
         android:elevation="4sp">
 
         <ImageView
             android:id="@+id/directionIcon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10sp"
@@ -86,13 +85,16 @@
             android:id="@+id/txtDireccionDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
             android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/directionIcon"
             android:background="@null"
-            android:hint="@string/notaMapa"
+            android:text="@string/notaMapa"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
 
     </RelativeLayout>
