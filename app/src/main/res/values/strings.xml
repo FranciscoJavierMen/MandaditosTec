@@ -30,5 +30,6 @@
     <string name="detallesPedidpLabel">Detalles del pedido</string>
     <string name="selectDireccion">Seleccionar dirección</string>
     <string name="direccionDestino">Direccion del entrega</string>
+    <string name="sinDireccion">Dirección no seleccionada</string>
     <string name="notaMapa">Selecciona la ubicación a donde se enviará tu pedido o haz clic en el botón para seleccionar tu ubicación actual</string>
 </resources>

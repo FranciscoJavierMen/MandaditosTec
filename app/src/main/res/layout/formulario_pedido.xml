@@ -66,6 +66,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtMandadero"
                         style="@style/etiqueta"
                         android:text="@string/nombreMandadero"/>
 
@@ -142,8 +143,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtDireccion"
                         style="@style/etiqueta"
-                        android:text="@string/direccionDestino"/>
+                        android:text="@string/sinDireccion"/>
 
                 </LinearLayout>
 
