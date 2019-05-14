@@ -28,6 +28,15 @@ public class BottomNavigation extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
 
+        //Creando las instancias de los fragmentos
+        fragmentPedidos = new FragmentPedidos();
+        fragmentMandaderos = new FragmentMandaderos();
+        fragmentPerfil = new FragmentPerfil();
+
+        setFragment(fragmentPedidos);//Establece fragment depor defecto de inicio
+        //Instanciando la vista del menú de navegación
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(navigationListener);//Listener
     }
 
     //Listener para el menu de navegación
