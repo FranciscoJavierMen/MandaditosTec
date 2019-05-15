@@ -32,4 +32,12 @@
     <string name="direccionDestino">Direccion del entrega</string>
     <string name="sinDireccion">Dirección no seleccionada</string>
     <string name="notaMapa">Manten presionado y da clic sobre el marcador o haz clic en el botón, luego haz clic sobre el marcador para seleccionar tu ubicación actual</string>
+    <string name="pedidoEnviadoOk">Tu pedido se ha enviado exitosamente, espera la respuesta del mandadero. Tu pedido llegará pronto.</string>
+    <string name="pedido_enviado">Pedido enviado</string>
+    <string name="pedido_cancelado">Pedido cancelado</string>
+    <string name="mensaje_cancelado">Tu pedido ha sido cancelado. Puedes volver y crear un nuevo pedido cuando quieras.</string>
+    <string name="enviar_pedido">Enviar pedido</string>
+    <string name="mensaje_pregunta">Acabas de crear un pedido, pulsa en Ok para confirmar los datos y enviar tu pedido, o pulsa Cancelar para cancelar el pedido.</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

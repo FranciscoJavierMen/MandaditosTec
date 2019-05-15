@@ -215,7 +215,6 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback, View.O
         }
     }
 
-
     //Método para selccionar un lugar en el mapa
     private void miUbicacion(){
 

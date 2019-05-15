@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/E:/MendozaLicea/Android1/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_pin_drop_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/E:/MendozaLicea/Android1/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_help_outline_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,11 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pin_drop" />
+                            <entry key="height" value="64" />
+                            <entry key="outputName" value="ic_answer_outline" />
+                            <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Administrador" />
+                            <entry key="width" value="64" />
                           </map>
                         </option>
                       </PersistentState>

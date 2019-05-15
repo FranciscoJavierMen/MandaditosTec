@@ -1,11 +1,14 @@
 package com.example.administrador.mandaditostec.Cliente.Pedido;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -49,6 +53,7 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(FormDialog.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
+
     }
 
     @Override
@@ -166,10 +171,32 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
             modelo.setPedido(pedido);
             modelo.setHora(hora);
             databaseReference.child("Pedido").child(modelo.getId()).setValue(modelo);
+
+            showDialog();
         }
 
 
         Toast.makeText(getActivity().getApplicationContext(), "Pedido enviado", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showDialog(){
+
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setCancelable(true);
+
+        View view  = this.getLayoutInflater().inflate(R.layout.dialog_pedido_enviado, null);
+        dialog.setContentView(view);
+
+        AppCompatButton btnOk = view.findViewById(R.id.btnBotonOK);
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private boolean validarPedido() {

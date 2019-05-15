@@ -1,6 +1,9 @@
 package com.example.administrador.mandaditostec.Cliente.Pedido;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class FragmentPedidos extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +35,7 @@ public class FragmentPedidos extends Fragment {
     private ArrayList<ModeloPedidos> listaPedidos;
     private RecyclerView recyclerPedidos;
     private SwipeRefreshLayout refreshPedidos;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,15 +66,6 @@ public class FragmentPedidos extends Fragment {
         }
     }
 
-    public void basicReadWrite() {
-        // [START write_message]
-        // Write a message to the database
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("message");
-
-        reference.setValue("Hello, World!");
-        // [END write_message]
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +82,8 @@ public class FragmentPedidos extends Fragment {
         });
         return view;
     }
+
+
 
     private void inicializarComponentes(View view) {
         fabPedido = view.findViewById(R.id.fabPedido);
