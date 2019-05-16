@@ -36,8 +36,8 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
     private Toolbar toolbar;
     
     private FloatingActionButton fabEnviarPedido;
-    private AppCompatButton btnSelectMandadero, btnSelectDireccion;
-    private TextView txtMandadero, txtDireccion;
+    private AppCompatButton btnMandadero, btnDireccionOrigen, btnDireccionDestino;
+    private TextView txtMandadero, txtDireccionOrigen, txtDireccionDestino;
     private EditText edtDescripcionPedido;
 
     private FirebaseDatabase firebaseDatabase;
@@ -78,8 +78,9 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
         inicializarFirebase();
 
         fabEnviarPedido.setOnClickListener(this);
-        btnSelectMandadero.setOnClickListener(this);
-        btnSelectDireccion.setOnClickListener(this);
+        btnMandadero.setOnClickListener(this);
+        btnDireccionDestino.setOnClickListener(this);
+        btnDireccionOrigen.setOnClickListener(this);
         return view;
     }
 
@@ -91,16 +92,23 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private void inicializar(View view) {
         fabEnviarPedido = view.findViewById(R.id.fabEnviarPedido);
-        btnSelectMandadero = view.findViewById(R.id.botonSeleccionarMandadero);
-        btnSelectDireccion = view.findViewById(R.id.botonSeleccionarDestino);
+        btnMandadero = view.findViewById(R.id.btnSeleccionarMandadero);
+        btnDireccionDestino = view.findViewById(R.id.btnSeleccionarDestino);
+        btnDireccionOrigen = view.findViewById(R.id.btnSeleccionarOrigen);
         txtMandadero = view.findViewById(R.id.txtMandadero);
-        txtDireccion = view.findViewById(R.id.txtDireccion);
+        txtDireccionOrigen = view.findViewById(R.id.txtDireccionOrigen);
+        txtDireccionDestino = view.findViewById(R.id.txtDireccionDestino);
         edtDescripcionPedido = view.findViewById(R.id.edtDescripcionPedido);
     }
 
-    private void seleccionarPunto(){
-        Intent punto = new Intent(getActivity(), Maps.class);
-        startActivityForResult(punto, MAP_POINT);
+    private void seleccionarOrigen(){
+        Intent origen = new Intent(getActivity(), Maps.class);
+        startActivityForResult(origen, MAP_POINT);
+    }
+
+    private void seleccionarDestino(){
+        Intent destino = new Intent(getActivity(), Maps.class);
+        startActivityForResult(destino, MAP_POINT);
     }
 
     @Override
@@ -108,7 +116,7 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
         if (requestCode == MAP_POINT){
             try{
                 LatLng latLng = data.getParcelableExtra("punto_seleccionado");
-                txtDireccion.setText("Dirección seleccionada");
+                txtDireccionDestino.setText("Dirección seleccionada");
                 Toast.makeText(getActivity().getApplicationContext(), "Punto seleccionado: "+latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_SHORT).show();
             } catch (Exception e){
                 e.printStackTrace();
@@ -130,7 +138,6 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Intent i;
         try{
             switch (view.getId()){
                 case R.id.fabEnviarPedido:
@@ -139,13 +146,18 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
                         dismiss();
                     }
                     break;
-                case R.id.botonSeleccionarMandadero:
-
+                case R.id.btnSeleccionarMandadero:
                     Toast.makeText(getActivity().getApplicationContext(), "Seleccionar mandadero", Toast.LENGTH_SHORT).show();
                     break;
-                case R.id.botonSeleccionarDestino:
-                    seleccionarPunto();
+                case R.id.btnSeleccionarDestino:
+                    seleccionarDestino();
                     break;
+                case R.id.btnSeleccionarOrigen:
+                    seleccionarOrigen();
+                    break;
+                    default:
+                        break;
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -155,28 +167,29 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
     private void enviarPedido() {
 
         if(validarPedido()){
-            String pedido, mandadero, direccion, hora;
+            String pedido, mandadero, direccionOrigen, direccionDestino, hora;
             Long ts = System.currentTimeMillis()/1000;
             hora = ts.toString();
 
             pedido = edtDescripcionPedido.getText().toString();
             mandadero = txtMandadero.getText().toString();
-            direccion = txtDireccion.getText().toString();
+            direccionOrigen = txtDireccionOrigen.getText().toString();
+            direccionDestino = txtDireccionDestino.getText().toString();
 
             ModeloPedidos modelo = new ModeloPedidos();
 
             modelo.setId(UUID.randomUUID().toString());
             modelo.setMandadero(mandadero);
-            modelo.setDireccion(direccion);
+            modelo.setDireccionOrigen(direccionOrigen);
+            modelo.setDireccionDestino(direccionDestino);
             modelo.setPedido(pedido);
             modelo.setHora(hora);
             databaseReference.child("Pedido").child(modelo.getId()).setValue(modelo);
 
             showDialog();
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), "Llenar todos los campos requeridos", Toast.LENGTH_SHORT).show();
         }
-
-
-        Toast.makeText(getActivity().getApplicationContext(), "Pedido enviado", Toast.LENGTH_SHORT).show();
     }
 
     protected void showDialog(){
@@ -201,13 +214,16 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private boolean validarPedido() {
         boolean validar = true;
-        String pedido, mandadero, direccion, hora;
+        String pedido, mandadero, direccionOrigen, direccionDestino;
 
         pedido = edtDescripcionPedido.getText().toString();
         mandadero = txtMandadero.getText().toString();
-        direccion = txtDireccion.getText().toString();
+        direccionOrigen = txtDireccionOrigen.getText().toString();
+        direccionDestino = txtDireccionDestino.getText().toString();
 
-        if (pedido.equals("") || direccion.equals("Dirección no seleccionada")){
+        if (pedido.equals("") || mandadero.equals("AMandadero no seleccionado") 
+                || direccionOrigen.equals("Dirección no seleccionada") 
+                || direccionDestino.equals("Dirección no seleccionada")){
             validar = false;
         }
 
@@ -223,12 +239,20 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
             txtMandadero.setTextColor(getResources().getColor(R.color.negro, null));
         }
 
-        if (direccion.equals("Dirección no seleccionada")){
-            txtDireccion.setError("Requerido");
-            txtDireccion.setText("Debe seleccionar dirección ");
-            txtDireccion.setTextColor(getResources().getColor(R.color.rojo, null));
+        if (direccionOrigen.equals("Dirección no seleccionada")){
+            txtDireccionDestino.setError("Requerido");
+            txtDireccionDestino.setText("Debe seleccionar dirección ");
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.rojo, null));
         } else {
-            txtDireccion.setTextColor(getResources().getColor(R.color.negro, null));
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.negro, null));
+        }
+        
+        if (direccionDestino.equals("Dirección no seleccionada")){
+            txtDireccionDestino.setError("Requerido");
+            txtDireccionDestino.setText("Debe seleccionar dirección ");
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.rojo, null));
+        } else {
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.negro, null));
         }
 
         return validar;

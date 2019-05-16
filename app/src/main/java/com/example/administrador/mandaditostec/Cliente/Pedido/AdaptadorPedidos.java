@@ -32,7 +32,8 @@ public class AdaptadorPedidos extends RecyclerView.Adapter<AdaptadorPedidos.Hold
     public void onBindViewHolder(HolderPedidos holder, int position) {
         ModeloPedidos modeloPedidos = listaPedidos.get(position);
 
-        holder.txtDireccion.setText(modeloPedidos.getDireccion());
+        holder.txtDireccionOrigen.setText(modeloPedidos.getDireccionOrigen());
+        holder.txtDireccionDestino.setText(modeloPedidos.getDireccionDestino());
         holder.txtPedido.setText(modeloPedidos.getPedido());
         holder.txtHora.setText(modeloPedidos.getHora());
     }
@@ -44,13 +45,14 @@ public class AdaptadorPedidos extends RecyclerView.Adapter<AdaptadorPedidos.Hold
 
     public class HolderPedidos extends RecyclerView.ViewHolder {
 
-        private TextView txtDireccion, txtPedido, txtHora;
+        private TextView txtDireccionOrigen, txtDireccionDestino, txtPedido, txtHora;
         private ImageView imgPedido;
 
         public HolderPedidos(View itemView) {
             super(itemView);
 
-            txtDireccion = itemView.findViewById(R.id.txtDireccionPedido);
+            txtDireccionOrigen = itemView.findViewById(R.id.txtDireccionOrigen);
+            txtDireccionDestino = itemView.findViewById(R.id.txtDireccionDestino);
             txtPedido = itemView.findViewById(R.id.txtDescripcionPedido);
             txtHora = itemView.findViewById(R.id.txtHoraPedido);
 

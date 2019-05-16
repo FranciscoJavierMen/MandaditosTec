@@ -1,170 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grisClaro"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Cliente.Pedido.FormDialog">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_gravity="center_vertical"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardTituloPedido"
-            app:layout_anchor="@id/cardFormularioPedido"
-            app:layout_anchorGravity="top|center"
-            app:cardElevation="6dp"
-            style="@style/cardTituloPedido"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/verde">
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/textoTituloPedido"/>
-        </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardTituloPedido"
+                app:layout_anchor="@id/cardFormularioPedido"
+                app:layout_anchorGravity="top|center"
+                app:cardElevation="6dp"
+                style="@style/cardTituloPedido"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/verde">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardFormularioPedido"
-            style="@style/cardPedidos"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+                <TextView
+                    style="@style/textoTituloPedido"/>
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.CoordinatorLayout
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fabSeleccionarMandadero"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:focusable="true"
-                        android:src="@drawable/ic_motorcycle"
-                        android:tint="@color/azulObscuro"
-                        app:backgroundTint="@color/azulClaro"
-                        app:layout_anchor="@+id/botonSeleccionarMandadero"
-                        app:layout_anchorGravity="left|center"
-                        app:rippleColor="@color/azul" />
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/botonSeleccionarMandadero"
-                        style="@style/botonFormularioPedidos"
-                        android:text="@string/seleccionarMandaddero" />
-
-                </android.support.design.widget.CoordinatorLayout>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardFormularioPedido"
+                style="@style/cardPedidos"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="30dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtMandadero"
-                        style="@style/etiqueta"
-                        android:text="@string/nombreMandadero"/>
-
                     <android.support.design.widget.CoordinatorLayout
+                        android:paddingBottom="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <View
-                            android:id="@+id/view1"
-                            style="@style/viewStyle"/>
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabSeleccionarMandadero"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:focusable="true"
+                            android:src="@drawable/ic_motorcycle"
+                            android:tint="@color/azulObscuro"
+                            app:backgroundTint="@color/azulClaro"
+                            app:layout_anchor="@+id/btnSeleccionarMandadero"
+                            app:layout_anchorGravity="left|center"
+                            app:rippleColor="@color/azul" />
 
-                        <TextView
-                            style="@style/label"
-                            android:text="@string/detallesPedidpLabel"
-                            app:layout_anchor="@+id/view1"
-                            app:layout_anchorGravity="center" />
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btnSeleccionarMandadero"
+                            style="@style/botonFormularioPedidos"
+                            android:text="@string/seleccionarMandaddero" />
 
                     </android.support.design.widget.CoordinatorLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/layoutCampo">
-
-                        <EditText
-                            android:id="@+id/edtDescripcionPedido"
-                            style="@style/campoMulti" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:textStyle="italic"
-                        android:text="@string/direccionDestino"/>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtMandadero"
+                            style="@style/etiqueta"
+                            android:text="@string/nombreMandadero"/>
+
+                        <android.support.design.widget.CoordinatorLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <View
+                                android:id="@+id/view1"
+                                style="@style/viewStyle"/>
+
+                            <TextView
+                                style="@style/label"
+                                android:text="@string/detallesPedidpLabel"
+                                app:layout_anchor="@+id/view1"
+                                app:layout_anchorGravity="center" />
+
+                        </android.support.design.widget.CoordinatorLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/layoutCampo">
+
+                            <EditText
+                                android:id="@+id/edtDescripcionPedido"
+                                style="@style/campoMulti" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="italic"
+                            android:text="@string/direccion_mandado"/>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.CoordinatorLayout
+                        android:paddingBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabSeleccionarOrigen"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:focusable="true"
+                            android:src="@drawable/ic_local_mall"
+                            android:tint="@color/azulObscuro"
+                            app:backgroundTint="@color/azulClaro"
+                            app:layout_anchor="@+id/btnSeleccionarOrigen"
+                            app:layout_anchorGravity="left|center"
+                            app:rippleColor="@color/azul" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btnSeleccionarOrigen"
+                            android:layout_marginTop="10dp"
+                            style="@style/botonFormularioPedidos"
+                            android:text="@string/selectDireccion" />
+
+                    </android.support.design.widget.CoordinatorLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDireccionOrigen"
+                            style="@style/etiqueta"
+                            android:text="@string/sinDireccion"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textStyle="italic"
+                            android:text="@string/direccionDestino"/>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.CoordinatorLayout
+                        android:paddingBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabSeleccionarDestino"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:focusable="true"
+                            android:src="@drawable/ic_place"
+                            android:tint="@color/azulObscuro"
+                            app:backgroundTint="@color/azulClaro"
+                            app:layout_anchor="@+id/btnSeleccionarDestino"
+                            app:layout_anchorGravity="left|center"
+                            app:rippleColor="@color/azul" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btnSeleccionarDestino"
+                            android:layout_marginTop="10dp"
+                            style="@style/botonFormularioPedidos"
+                            android:text="@string/selectDireccion" />
+
+                    </android.support.design.widget.CoordinatorLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDireccionDestino"
+                            style="@style/etiqueta"
+                            android:text="@string/sinDireccion"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <android.support.design.widget.CoordinatorLayout
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            </android.support.v7.widget.CardView>
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fabSeleccionarDestino"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:focusable="true"
-                        android:src="@drawable/ic_place"
-                        android:tint="@color/azulObscuro"
-                        app:backgroundTint="@color/azulClaro"
-                        app:layout_anchor="@+id/botonSeleccionarDestino"
-                        app:layout_anchorGravity="left|center"
-                        app:rippleColor="@color/azul" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabEnviarPedido"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:focusable="true"
+                android:src="@drawable/ic_send"
+                android:tint="@color/azulClaro"
+                app:backgroundTint="@color/verde"
+                app:layout_anchor="@+id/cardFormularioPedido"
+                app:layout_anchorGravity="bottom|center"
+                app:rippleColor="@color/azul" />
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/botonSeleccionarDestino"
-                        android:layout_marginTop="10dp"
-                        style="@style/botonFormularioPedidos"
-                        android:text="@string/selectDireccion" />
-
-                </android.support.design.widget.CoordinatorLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtDireccion"
-                        style="@style/etiqueta"
-                        android:text="@string/sinDireccion"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabEnviarPedido"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:src="@drawable/ic_send"
-            android:tint="@color/azulClaro"
-            app:backgroundTint="@color/verde"
-            app:layout_anchor="@+id/cardFormularioPedido"
-            app:layout_anchorGravity="bottom|center"
-            app:rippleColor="@color/azul" />
-
-    </android.support.design.widget.CoordinatorLayout>
+        </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

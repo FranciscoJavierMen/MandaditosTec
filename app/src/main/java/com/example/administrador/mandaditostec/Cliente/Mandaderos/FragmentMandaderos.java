@@ -1,4 +1,4 @@
-package com.example.administrador.mandaditostec.Cliente;
+package com.example.administrador.mandaditostec.Cliente.Mandaderos;
 
 import android.content.Context;
 import android.net.Uri;

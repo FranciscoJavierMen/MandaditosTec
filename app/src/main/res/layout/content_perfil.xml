@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azulClaro"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Cliente.Perfil.FragmentPerfil"
+    tools:showIn="@layout/fragment_perfil">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:background="@color/blanco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/datos_cliente"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/txtNombreCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/nombre_cliente"
+                android:textColor="@color/azulObscuro"
+                android:textStyle="bold"
+                android:textSize="22sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtCorreoCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/residencia_cliente"
+                    android:textSize="14sp"
+                    android:textColor="@color/negro"
+                    android:textStyle="italic"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/txtCorreoCliente"
+                    android:src="@drawable/ic_edit"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/azulClaro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sesion"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/azulObscuro"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/info_sesion"
+                android:textSize="16sp"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnCerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingStart="15dp"
+                android:layout_marginBottom="60dp"
+                android:paddingEnd="15dp"
+                android:layout_gravity="center"
+                android:text="@string/cerrar_sesion"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:background="@drawable/bg_boton_cerrar_sesion"
+                android:textColor="@color/blanco"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
