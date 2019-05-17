@@ -7,14 +7,17 @@ public class ModeloPedidos {
     private String pedido;
     private String hora;
     private String mandadero;
+    private Boolean realizado;
 
-    public ModeloPedidos(String id, String direccionOrigen, String direccionDestino, String pedido, String hora, String mandadero) {
+    public ModeloPedidos(String id, String direccionOrigen, String direccionDestino, String pedido,
+                         String hora, String mandadero, Boolean realizado) {
         this.id = id;
         this.direccionOrigen = direccionOrigen;
         this.direccionDestino = direccionDestino;
         this.pedido = pedido;
         this.hora = hora;
         this.mandadero = mandadero;
+        this.realizado = realizado;
     }
 
     ModeloPedidos(){}
@@ -65,5 +68,13 @@ public class ModeloPedidos {
 
     public void setMandadero(String mandadero) {
         this.mandadero = mandadero;
+    }
+
+    public Boolean getRealizado() {
+        return realizado;
+    }
+
+    public void setRealizado(Boolean realizado) {
+        this.realizado = realizado;
     }
 }

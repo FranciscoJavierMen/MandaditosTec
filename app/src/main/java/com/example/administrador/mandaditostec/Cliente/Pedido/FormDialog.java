@@ -24,6 +24,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -31,8 +34,8 @@ import java.util.UUID;
 public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     public static final String TAG = "Nuevo pedido";
-    private final static int MAP_POINT = 999;
-    private final static int MAP_PLACE = 1;
+    private final static int MAP_POINT1 = 999;
+    private final static int MAP_POINT2 = 998;
     private Toolbar toolbar;
     
     private FloatingActionButton fabEnviarPedido;
@@ -103,20 +106,29 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private void seleccionarOrigen(){
         Intent origen = new Intent(getActivity(), Maps.class);
-        startActivityForResult(origen, MAP_POINT);
+        startActivityForResult(origen, MAP_POINT1);
     }
 
     private void seleccionarDestino(){
         Intent destino = new Intent(getActivity(), Maps.class);
-        startActivityForResult(destino, MAP_POINT);
+        startActivityForResult(destino, MAP_POINT2);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MAP_POINT){
+        if (requestCode == MAP_POINT1){
             try{
                 LatLng latLng = data.getParcelableExtra("punto_seleccionado");
-                txtDireccionDestino.setText("Dirección seleccionada");
+                txtDireccionOrigen.setText(""+latLng);
+                Toast.makeText(getActivity().getApplicationContext(), "Punto seleccionado: "+latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_SHORT).show();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == MAP_POINT2){
+            try{
+                LatLng latLng = data.getParcelableExtra("punto_seleccionado");
+                txtDireccionDestino.setText(""+latLng);
                 Toast.makeText(getActivity().getApplicationContext(), "Punto seleccionado: "+latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_SHORT).show();
             } catch (Exception e){
                 e.printStackTrace();
@@ -166,10 +178,11 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private void enviarPedido() {
 
+
         if(validarPedido()){
-            String pedido, mandadero, direccionOrigen, direccionDestino, hora;
-            Long ts = System.currentTimeMillis()/1000;
-            hora = ts.toString();
+            String pedido, mandadero, direccionOrigen, direccionDestino, fecha;
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd G 'at' HH:mm:ss");
+            fecha = sf.format(new Date());
 
             pedido = edtDescripcionPedido.getText().toString();
             mandadero = txtMandadero.getText().toString();
@@ -183,7 +196,9 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
             modelo.setDireccionOrigen(direccionOrigen);
             modelo.setDireccionDestino(direccionDestino);
             modelo.setPedido(pedido);
-            modelo.setHora(hora);
+            modelo.setHora(fecha);
+            modelo.setRealizado(false);
+
             databaseReference.child("Pedido").child(modelo.getId()).setValue(modelo);
 
             showDialog();
