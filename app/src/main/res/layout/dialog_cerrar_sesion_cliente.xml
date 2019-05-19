@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/escarlata">
+
+        <ImageView
+            android:contentDescription="@string/title_mandaderos"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_answer_outline" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:textColor="@color/escarlataObscuro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cerrar_sesion"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/pregunta_cerrar_sesion"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_weight="1"
+                android:id="@+id/btnCancelarSesion"
+                android:layout_width="150sp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_boton_dialogo_enviado"
+                android:text="@string/cancelar"
+                android:textAllCaps="false"
+                android:textColor="@color/verdeObscuro" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_weight="1"
+                android:id="@+id/btnAceptarSesion"
+                android:layout_width="150sp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_boton_dialogo_cancelar"
+                android:text="@string/aceptar"
+                android:textAllCaps="false"
+                android:textColor="@color/escarlataObscuro" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

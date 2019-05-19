@@ -1,11 +1,14 @@
 package com.example.administrador.mandaditostec.Cliente.Pedido;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,19 +24,23 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 
 public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     public static final String TAG = "Nuevo pedido";
-    private final static int MAP_POINT = 999;
-    private final static int MAP_PLACE = 1;
+    private final static int MAP_POINT1 = 999;
+    private final static int MAP_POINT2 = 998;
     private Toolbar toolbar;
     
     private FloatingActionButton fabEnviarPedido;
-    private AppCompatButton btnSelectMandadero, btnSelectDireccion;
-    private TextView txtMandadero, txtDireccion;
+    private AppCompatButton btnMandadero, btnDireccionOrigen, btnDireccionDestino;
+    private TextView txtMandadero, txtDireccionOrigen, txtDireccionDestino;
     private EditText edtDescripcionPedido;
 
     private FirebaseDatabase firebaseDatabase;
@@ -49,6 +56,7 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(FormDialog.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
+
     }
 
     @Override
@@ -73,8 +81,9 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
         inicializarFirebase();
 
         fabEnviarPedido.setOnClickListener(this);
-        btnSelectMandadero.setOnClickListener(this);
-        btnSelectDireccion.setOnClickListener(this);
+        btnMandadero.setOnClickListener(this);
+        btnDireccionDestino.setOnClickListener(this);
+        btnDireccionOrigen.setOnClickListener(this);
         return view;
     }
 
@@ -86,24 +95,40 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private void inicializar(View view) {
         fabEnviarPedido = view.findViewById(R.id.fabEnviarPedido);
-        btnSelectMandadero = view.findViewById(R.id.botonSeleccionarMandadero);
-        btnSelectDireccion = view.findViewById(R.id.botonSeleccionarDestino);
+        btnMandadero = view.findViewById(R.id.btnSeleccionarMandadero);
+        btnDireccionDestino = view.findViewById(R.id.btnSeleccionarDestino);
+        btnDireccionOrigen = view.findViewById(R.id.btnSeleccionarOrigen);
         txtMandadero = view.findViewById(R.id.txtMandadero);
-        txtDireccion = view.findViewById(R.id.txtDireccion);
+        txtDireccionOrigen = view.findViewById(R.id.txtDireccionOrigen);
+        txtDireccionDestino = view.findViewById(R.id.txtDireccionDestino);
         edtDescripcionPedido = view.findViewById(R.id.edtDescripcionPedido);
     }
 
-    private void seleccionarPunto(){
-        Intent punto = new Intent(getActivity(), Maps.class);
-        startActivityForResult(punto, MAP_POINT);
+    private void seleccionarOrigen(){
+        Intent origen = new Intent(getActivity(), Maps.class);
+        startActivityForResult(origen, MAP_POINT1);
+    }
+
+    private void seleccionarDestino(){
+        Intent destino = new Intent(getActivity(), Maps.class);
+        startActivityForResult(destino, MAP_POINT2);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MAP_POINT){
+        if (requestCode == MAP_POINT1){
             try{
                 LatLng latLng = data.getParcelableExtra("punto_seleccionado");
-                txtDireccion.setText("Dirección seleccionada");
+                txtDireccionOrigen.setText(""+latLng);
+                Toast.makeText(getActivity().getApplicationContext(), "Punto seleccionado: "+latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_SHORT).show();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == MAP_POINT2){
+            try{
+                LatLng latLng = data.getParcelableExtra("punto_seleccionado");
+                txtDireccionDestino.setText(""+latLng);
                 Toast.makeText(getActivity().getApplicationContext(), "Punto seleccionado: "+latLng.latitude+" - "+latLng.longitude, Toast.LENGTH_SHORT).show();
             } catch (Exception e){
                 e.printStackTrace();
@@ -125,7 +150,6 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Intent i;
         try{
             switch (view.getId()){
                 case R.id.fabEnviarPedido:
@@ -134,13 +158,18 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
                         dismiss();
                     }
                     break;
-                case R.id.botonSeleccionarMandadero:
-
+                case R.id.btnSeleccionarMandadero:
                     Toast.makeText(getActivity().getApplicationContext(), "Seleccionar mandadero", Toast.LENGTH_SHORT).show();
                     break;
-                case R.id.botonSeleccionarDestino:
-                    seleccionarPunto();
+                case R.id.btnSeleccionarDestino:
+                    seleccionarDestino();
                     break;
+                case R.id.btnSeleccionarOrigen:
+                    seleccionarOrigen();
+                    break;
+                    default:
+                        break;
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -149,38 +178,67 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
 
     private void enviarPedido() {
 
+
         if(validarPedido()){
-            String pedido, mandadero, direccion, hora;
-            Long ts = System.currentTimeMillis()/1000;
-            hora = ts.toString();
+            String pedido, mandadero, direccionOrigen, direccionDestino, fecha;
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd G 'at' HH:mm:ss");
+            fecha = sf.format(new Date());
 
             pedido = edtDescripcionPedido.getText().toString();
             mandadero = txtMandadero.getText().toString();
-            direccion = txtDireccion.getText().toString();
+            direccionOrigen = txtDireccionOrigen.getText().toString();
+            direccionDestino = txtDireccionDestino.getText().toString();
 
             ModeloPedidos modelo = new ModeloPedidos();
 
             modelo.setId(UUID.randomUUID().toString());
             modelo.setMandadero(mandadero);
-            modelo.setDireccion(direccion);
+            modelo.setDireccionOrigen(direccionOrigen);
+            modelo.setDireccionDestino(direccionDestino);
             modelo.setPedido(pedido);
-            modelo.setHora(hora);
+            modelo.setHora(fecha);
+            modelo.setRealizado(false);
+
             databaseReference.child("Pedido").child(modelo.getId()).setValue(modelo);
+
+            showDialog();
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(), "Llenar todos los campos requeridos", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    protected void showDialog(){
 
-        Toast.makeText(getActivity().getApplicationContext(), "Pedido enviado", Toast.LENGTH_SHORT).show();
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setCancelable(true);
+
+        View view  = this.getLayoutInflater().inflate(R.layout.dialog_pedido_enviado, null);
+        dialog.setContentView(view);
+
+        AppCompatButton btnOk = view.findViewById(R.id.btnBotonOK);
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private boolean validarPedido() {
         boolean validar = true;
-        String pedido, mandadero, direccion, hora;
+        String pedido, mandadero, direccionOrigen, direccionDestino;
 
         pedido = edtDescripcionPedido.getText().toString();
         mandadero = txtMandadero.getText().toString();
-        direccion = txtDireccion.getText().toString();
+        direccionOrigen = txtDireccionOrigen.getText().toString();
+        direccionDestino = txtDireccionDestino.getText().toString();
 
-        if (pedido.equals("") || direccion.equals("Dirección no seleccionada")){
+        if (pedido.equals("") || mandadero.equals("AMandadero no seleccionado") 
+                || direccionOrigen.equals("Dirección no seleccionada") 
+                || direccionDestino.equals("Dirección no seleccionada")){
             validar = false;
         }
 
@@ -196,12 +254,20 @@ public class FormDialog extends DialogFragment implements View.OnClickListener{
             txtMandadero.setTextColor(getResources().getColor(R.color.negro, null));
         }
 
-        if (direccion.equals("Dirección no seleccionada")){
-            txtDireccion.setError("Requerido");
-            txtDireccion.setText("Debe seleccionar dirección ");
-            txtDireccion.setTextColor(getResources().getColor(R.color.rojo, null));
+        if (direccionOrigen.equals("Dirección no seleccionada")){
+            txtDireccionDestino.setError("Requerido");
+            txtDireccionDestino.setText("Debe seleccionar dirección ");
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.rojo, null));
         } else {
-            txtDireccion.setTextColor(getResources().getColor(R.color.negro, null));
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.negro, null));
+        }
+        
+        if (direccionDestino.equals("Dirección no seleccionada")){
+            txtDireccionDestino.setError("Requerido");
+            txtDireccionDestino.setText("Debe seleccionar dirección ");
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.rojo, null));
+        } else {
+            txtDireccionDestino.setTextColor(getResources().getColor(R.color.negro, null));
         }
 
         return validar;

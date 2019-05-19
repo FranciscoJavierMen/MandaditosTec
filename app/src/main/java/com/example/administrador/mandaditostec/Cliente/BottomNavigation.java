@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.administrador.mandaditostec.Cliente.Mandaderos.FragmentMandaderos;
 import com.example.administrador.mandaditostec.Cliente.Pedido.FragmentPedidos;
+import com.example.administrador.mandaditostec.Cliente.Perfil.FragmentPerfil;
 import com.example.administrador.mandaditostec.R;
 
 public class BottomNavigation extends AppCompatActivity implements
@@ -49,7 +51,6 @@ public class BottomNavigation extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.navigation_pedidos:
                     setFragment(fragmentPedidos);
-                    Toast.makeText(BottomNavigation.this, "Texto", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_mandaderos:
                     setFragment(fragmentMandaderos);

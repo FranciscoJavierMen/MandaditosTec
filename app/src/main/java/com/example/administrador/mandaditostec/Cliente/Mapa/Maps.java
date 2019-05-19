@@ -39,7 +39,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback, View.O
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean mLocationPermissionGranted = false;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    private static final float ZOOM = 14f;
+    private static final float ZOOM = 16f;
 
     private TextView txtDireccion;
 
@@ -214,8 +214,6 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback, View.O
             }
         }
     }
-
-
     //Método para selccionar un lugar en el mapa
     private void miUbicacion(){
 

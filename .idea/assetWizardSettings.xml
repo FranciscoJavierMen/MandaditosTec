@@ -176,7 +176,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/E:/MendozaLicea/Android1/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_pin_drop_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/E:/MendozaLicea/Android1/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_local_mall_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -186,7 +186,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pin_drop" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_local_mall" />
+                            <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Administrador" />
                           </map>
                         </option>

@@ -1,9 +1,11 @@
-package com.example.administrador.mandaditostec.Cliente;
+package com.example.administrador.mandaditostec.Cliente.Perfil;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ public class FragmentPerfil extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private AppCompatButton btnCerrarSesion;
 
     public FragmentPerfil() {
         // Required empty public constructor
@@ -65,7 +69,37 @@ public class FragmentPerfil extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_perfil, container, false);
+        View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        btnCerrarSesion = view.findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
+
+        return  view;
+    }
+
+    protected void showDialog(){
+
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setCancelable(true);
+
+        View view  = this.getLayoutInflater().inflate(R.layout.dialog_cerrar_sesion_cliente, null);
+        dialog.setContentView(view);
+
+        AppCompatButton btnAceptar = view.findViewById(R.id.btnAceptarSesion);
+        AppCompatButton btnCancelar = view.findViewById(R.id.btnCancelarSesion);
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
