@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grisClaro">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardFormularioPedido"
+            android:layout_marginTop="20dp"
+            style="@style/cardPedidos"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="30dp"
+                android:orientation="vertical">
+
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/view1"
+                        style="@style/viewStyle"/>
+
+                    <TextView
+                        style="@style/label"
+                        android:text="@string/label_confirmar_recepcion"
+                        app:layout_anchor="@+id/view1"
+                        app:layout_anchorGravity="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:focusable="true"
+                        android:src="@drawable/ic_send_ok"
+                        android:tint="@color/blanco"
+                        app:backgroundTint="@color/verde"
+                        app:layout_anchor="@+id/btnConfirmarRecepcion"
+                        app:layout_anchorGravity="left|center"
+                        app:rippleColor="@color/verdeClaro" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btnConfirmarRecepcion"
+                        android:layout_marginTop="60dp"
+                        style="@style/botonFormularioPedidos"
+                        android:text="@string/confirmar_recepcion" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_marginTop="100sp"
+                        android:id="@+id/view2"
+                        style="@style/viewStyle"/>
+
+                    <TextView
+                        style="@style/label"
+                        android:text="@string/descripcionPedido"
+                        app:layout_anchor="@+id/view2"
+                        app:layout_anchorGravity="center" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <LinearLayout
+                    android:background="@color/azulClaro"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/fotoMandadero"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10sp"
+                            android:layout_marginEnd="10dp"
+                            android:tint="@color/azulObscuro"
+                            android:src="@drawable/ic_alert_outline"/>
+
+                        <TextView
+                            android:id="@+id/edtSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/fotoMandadero"
+                            android:layout_centerVertical="true"
+                            android:textSize="14sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:background="@null"
+                            android:text="@string/nombreMandadero" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:textStyle="italic"
+                        android:textColor="@color/azul"
+                        android:text="@string/fecha_pedido"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="20dp"
+                        android:textStyle="normal"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/negro"
+                        android:text="@string/large_text"/>
+
+                </LinearLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_marginTop="100sp"
+                        android:id="@+id/view3"
+                        style="@style/viewStyle"/>
+
+                    <TextView
+                        style="@style/label"
+                        android:text="@string/direccion_mandado"
+                        app:layout_anchor="@+id/view3"
+                        app:layout_anchorGravity="center" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:background="@color/azulObscuro"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/linear1"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/linear2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="20dp"
+                                android:text="@string/pedidoEnviadoOk"
+                                android:textColor="@color/blanco"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_weight="7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:focusable="true"
+                        android:src="@drawable/ic_arrow_right"
+                        android:tint="@color/azulObscuro"
+                        app:backgroundTint="@color/blanco"
+                        app:layout_anchor="@+id/linear1"
+                        app:layout_anchorGravity="right|center"
+                        app:rippleColor="@color/azul" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_marginTop="100sp"
+                        android:id="@+id/view4"
+                        style="@style/viewStyle"/>
+
+                    <TextView
+                        style="@style/label"
+                        android:text="@string/contacto"
+                        app:layout_anchor="@+id/view4"
+                        app:layout_anchorGravity="center" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        app:cardBackgroundColor="@color/azulClaro"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:baselineAligned="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_weight="4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:tint="@color/azulObscuro"
+                                    android:src="@drawable/ic_person"/>
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_weight="1.5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtNombreMandaderoDetalles"
+                                    android:maxLines="1"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/nombreMandadero"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/azulObscuro"
+                                    android:textStyle="italic"
+                                    android:textSize="12sp"
+                                    android:text="@string/mandadero"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        app:cardBackgroundColor="@color/azulClaro"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:baselineAligned="false"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_weight="4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/imgPedido"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:tint="@color/azulObscuro"
+                                    android:src="@drawable/ic_chat"/>
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_weight="1.5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:maxLines="1"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/nuevo_chat"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/azulObscuro"
+                                    android:textStyle="italic"
+                                    android:textSize="12sp"
+                                    android:text="@string/chat"/>
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_weight="4.5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/flechaderecha"/>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_marginTop="100sp"
+                        android:id="@+id/view5"
+                        style="@style/viewStyle"/>
+
+                    <TextView
+                        style="@style/label"
+                        android:text="@string/estado_pedido"
+                        app:layout_anchor="@+id/view5"
+                        app:layout_anchorGravity="center" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linear3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="30dp">
+
+                            <TextView
+                                android:id="@+id/txtEstadoPedido"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="40dp"
+                                android:text="@string/pedido_aceptado"
+                                android:gravity="center"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/azulObscuro"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:focusable="true"
+                        android:src="@drawable/ic_done"
+                        android:tint="@color/blanco"
+                        app:backgroundTint="@color/verde"
+                        app:layout_anchor="@+id/linear3"
+                        app:layout_anchorGravity="bottom|center"
+                        app:rippleColor="@color/verdeClaro" />
+
+                </android.support.design.widget.CoordinatorLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
